@@ -15,13 +15,11 @@ import java.util.Date;
 
 public class MongoDB implements GuildData {
 
-    private static final String DATABASE_URI = "mongodb+srv://azarex:Zd6xvfacWBIdMkuC@cluster0-9wcdt.mongodb.net/test";
-
     private final MongoCollection<Document> userCollection;
     private final MongoCollection<Document> guildCollection;
 
-    public MongoDB() {
-        MongoClientURI uriClient = new MongoClientURI(DATABASE_URI);
+    public MongoDB(String databaseUri) {
+        MongoClientURI uriClient = new MongoClientURI(databaseUri);
         MongoClient client = new MongoClient(uriClient);
         MongoDatabase mainDatabase = client.getDatabase("Main");
 

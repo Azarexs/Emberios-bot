@@ -14,8 +14,8 @@ import javax.security.auth.login.LoginException;
 
 public class Emberios {
 
-    private Emberios(String token) throws LoginException {
-        GuildData guildData = new MongoDB();
+    private Emberios(String token, String databaseUri) throws LoginException {
+        GuildData guildData = new MongoDB(databaseUri);
         Scheduler scheduler = new Scheduler();
         CommandHandler commandHandler = new CommandHandler(guildData, scheduler)
                 .register("clear", new ClearCommand());
@@ -32,7 +32,7 @@ public class Emberios {
 
     public static void main(String[] args) {
         try {
-            new Emberios(args[0]);
+            new Emberios(args[0], args[1]);
         } catch (LoginException e) {
             e.printStackTrace();
         }
